@@ -1,0 +1,40 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# SummaryTable
+
+The goal of *SummaryTable* is to provide a way to summarize datasets by groups.
+It includes a main function, `summarizewith_detail()`, which wraps around `dplyr::group_by()` and `dplyr::summarise()` to compute detailed summary statistics for numeric variables, including the mean, median, standard deviation, maximum, minimum, and range.
+
+## Installation
+
+You can install the development version of SummaryTable like so:
+
+Package installation can be done directly by calling`devtools::install_github("annywm/SummaryTable")`
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(SummaryTable)
+## basic example code
+grade <- data.frame(
+subject = rep(c("Math", "English"), each = 3),
+score = c(75, 80, NA, 90, 87, 66)
+)
+
+summarizewith_detail(grade,subject,score ,2)
+```
