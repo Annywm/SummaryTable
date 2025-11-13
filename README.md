@@ -14,11 +14,11 @@ median, standard deviation, maximum, minimum, and range.
 You can install the development version of SummaryTable like so:
 
 Package installation can be done directly by
-calling`devtools::install_github("annywm/SummaryTable")`
+calling`devtools::install_github("stat545ubc-2025/summary_table")`
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to solve a common problem:s
 
 ``` r
 library(SummaryTable)

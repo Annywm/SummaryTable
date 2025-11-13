@@ -22,7 +22,7 @@ It includes a main function, `summarizewith_detail()`, which wraps around `dplyr
 
 You can install the development version of SummaryTable like so:
 
-Package installation can be done directly by calling`devtools::install_github("annywm/SummaryTable")`
+Package installation can be done directly by calling`devtools::install_github("stat545ubc-2025/SummaryTable")`
 
 ## Example
 

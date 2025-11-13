@@ -7,13 +7,17 @@
 summarizewith_detail(data, group, variable, round_num = 4, na.rm = TRUE)
 }
 \arguments{
-\item{data}{A data.frame or tibble containing the data.}
+\item{data}{A data.frame or tibble containing the data.
+Named \code{data} to make the role explicit.}
 
-\item{group}{A categorical group variable used to build the summary table.}
+\item{group}{A categorical group variable used to build the summary table.
+Named \code{group} to make the role explicit.}
 
-\item{variable}{A numeric variable to summarize.}
+\item{variable}{A numeric variable to summarize.
+Named \code{variable} to make the role explicit.}
 
-\item{round_num}{The number of decimal places for the printed summary table (default = 4).}
+\item{round_num}{The number of decimal places for the printed summary table (default = 4).
+Named \code{round_num} to make the role explicit.}
 
 \item{na.rm}{Logical, whether or not to remove NAs (default = TRUE).}
 }
@@ -28,8 +32,5 @@ four decimal places by default. The function prints a formatted summary table.
 \examples{
 grade <- data.frame(subject = rep(c("Math", "English"), each = 3),score = c(75, 80, NA, 90, 87, 66))
 summarizewith_detail(grade,subject,score ,2)
-
-library(datateachr)
-summarizewith_detail(cancer_sample,diagnosis,area_mean)
 
 }

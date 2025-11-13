@@ -12,12 +12,19 @@ test_that("summarizewith_detail function works with empty dataset", {
                     x3 = factor(),
                     stringsAsFactors = FALSE)
   summary_table2 <- summarizewith_detail(df1,x3,x2)
-  expect_true("mean" %in% names(summary_table2))
   expect_equal(nrow(summary_table2), 0)
 })
 
 test_that("summarizewith_detail function fails on non-numeric value column", {
   df2 <- data.frame(group = c("A","A","B","B","C","C"),
-                      value = c("T","T","F","T","F","F"))
+                    value = c("T","T","F","T","F","F"))
   expect_error(summarizewith_detail(df2,group,value),"value argument must be a numeric variable")
+})
+
+test_that("summarizewith_detail function returns correct structure", {
+  df_NA <- data.frame(group = c("A","A","B","B","C","C"),
+                      value = c(1,2,NA,3,4,5))
+  summary_table3 <- summarizewith_detail(df_NA,group,value,2)
+  expected_columns <- c("group", "mean", "median", "sd", "min", "max", "range")
+  expect_equal(names(summary_table3), expected_columns)
 })

@@ -5,9 +5,13 @@
 #' four decimal places by default. The function prints a formatted summary table.
 #'
 #' @param data A data.frame or tibble containing the data.
+#' Named `data` to make the role explicit.
 #' @param group A categorical group variable used to build the summary table.
+#' Named `group` to make the role explicit.
 #' @param variable A numeric variable to summarize.
+#' Named `variable` to make the role explicit.
 #' @param round_num The number of decimal places for the printed summary table (default = 4).
+#' Named `round_num` to make the role explicit.
 #' @param na.rm Logical, whether or not to remove NAs (default = TRUE).
 #'
 #' @return A tibble with one row per group and summary statistics as columns.
@@ -16,14 +20,16 @@
 #' grade <- data.frame(subject = rep(c("Math", "English"), each = 3),score = c(75, 80, NA, 90, 87, 66))
 #' summarizewith_detail(grade,subject,score ,2)
 #'
-#' library(datateachr)
-#' summarizewith_detail(cancer_sample,diagnosis,area_mean)
-#'
 #' @export
-#' @importFrom dplyr group_by summarise pull
+#' @importFrom dplyr group_by summarise pull mutate across where
 #' @importFrom knitr kable
 #' @importFrom magrittr %>%
+#' @importFrom tibble tibble
 summarizewith_detail <- function(data,group,variable,round_num=4, na.rm = TRUE){
+  if (nrow(data)==0){
+    print("Empty dataset provided. Returning empty summary table.")
+    return(tibble() )
+  }
   variable_arg <- data %>%pull({{variable}})
   if(!is.numeric(variable_arg)){
     stop("value argument must be a numeric variable")}
@@ -31,12 +37,12 @@ summarizewith_detail <- function(data,group,variable,round_num=4, na.rm = TRUE){
     group_by({{group}})%>%
     summarise(
       mean = mean({{variable}}, na.rm = na.rm),
-      median= median({{variable}}, na.rm = na.rm),
-      sd= sd({{variable}}, na.rm = na.rm),
+      median= stats::median({{variable}}, na.rm = na.rm),
+      sd= stats::sd({{variable}}, na.rm = na.rm),
       min =  min({{variable}}, na.rm = na.rm),
       max=  max({{variable}}, na.rm = na.rm),
-      range = max({{variable}}, na.rm = na.rm) -min({{variable}}, na.rm = na.rm))
+      range = max({{variable}}, na.rm = na.rm) -min({{variable}}, na.rm = na.rm)) %>%
+    mutate(across(where(is.numeric), ~round(., round_num)))
 
-  print(knitr::kable(summary_table, digits =round_num))
   return(summary_table)
 }

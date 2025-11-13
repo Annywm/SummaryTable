@@ -1,23 +1,24 @@
 Package: SummaryTable
 Title: Summarize Dataset by Group
-Version: 0.0.0.9000
+Version: 0.1.1
 Authors@R: 
     person("Mo", "Wang", , "first.last@example.com", role = c("aut", "cre"))
-Description: Create a tidy, formatted summary table of a numeric variable grouped by one categorical variable, showing the mean, median, standard deviation, minimum, maximum, and range of that numeric variable.
+Description: Return a tibble of a numeric variable grouped by one categorical variable, showing the mean, median, standard deviation, minimum, maximum, and range of that numeric variable.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Imports: 
   dplyr, 
-  knitr,
-  magrittr
+  tibble,
+  magrittr,
+  knitr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Suggests: 
     rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://github.com/Annywm/SummaryTable
-BugReports: https://github.com/Annywm/SummaryTable/issues
+URL: https://github.com/stat545ubc-2025/summary_table
+BugReports: https://github.com/stat545ubc-2025/summary_table/issues
 VignetteBuilder: knitr
 Depends: 
     R (>= 3.5)
